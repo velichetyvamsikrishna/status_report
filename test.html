@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#ts").click(function(){
+        $("body").css({"font-size": "200%"});
+		$("input").css({"font-size": "120%"});
+		$(".btn").css({"font-size": "120%"});
+    });
+	$("#hb").click(function(){
+        $("body").css({"background-color": "black","color": "white"});
+		$("input").css({"background-color": "black","color": "green"});
+		$("a").css({"color": "yellow"});
+		$("p").css({"color": "white"});
+		$(".btn").css({"background-color": "black","color": "white", "border-color": "white"});
+    });
+	$("#hw").click(function(){
+        $("body").css({"background-color": "white","color": "black"});
+		$("input").css({"background-color": "white","color": "brown"});
+		$("a").css({"color": "blue"});
+		$("p").css({"color": "black"});
+		$(".btn").css({"background-color": "white","color": "black", "border-color": "black"});
+    });
+});
+</script>
+</head>
+<body>
+
+<input style="border:0px" type=text disabled value='This is a DISABLED TEXT.' />
+<br/><br/>
+<input style="border:0px" type=text disabled value='This is a DISABLED TEXT2' />
+<br/><br/>
+<a href="#">This is a Hyper Link.</a>
+<br/><br/>
+<a href="#">This is a Hyper Link 2.</a>
+<br/>
+<p>This is a paragraph.</p>
+<p>
+How do people who cannot move their arms use your website? What about people who cannot see well or at all? Or people who have difficulty hearing or understanding, or have other accessibility needs? This resource introduces how people with disabilities, including people with age-related impairments, use the Web. It describes tools and approaches that people with different kinds of disabilities use to browse the Web and the design barriers they encounter on the Web. It helps developers, designers, and others to understand the principles for creating accessible websites, web applications, browsers, and other web tools. stories of selected scenarios of people with disabilities using the Web, to highlight the effect of barriers and the broader benefits of accessible websites and web tools. explores the wide range of diversity of people and abilities, and highlights some of the types of barriers that people commonly encounter from inaccessible design.
+</p>
+
+<button class="btn" id="ts">Text Scaling</button>
+<button class="btn" id="hb">HC B</button>
+<button class="btn" id="hw">HC W</button>
+
+</body>
+</html>
+

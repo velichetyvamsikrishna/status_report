@@ -1,0 +1,14 @@
+v-vave@microsoft.com,Admin
+v-baagir@microsoft.com,Admin
+v-hagowd@microsoft.com,Admin
+v-kousha@microsoft.com,Admin
+v-ummoh@microsoft.com,Admin
+v-chaych@microsoft.com,Tester
+v-didug@microsoft.com,Tester
+v-srgoll@microsoft.com,Admin
+v-shrenu@microsoft.com,Admin
+v-vithum@microsoft.com,Client
+v-jomadh@microsoft.com,Tester
+v-thbopp@microsoft.com,Tester
+v-de@microsoft.com,Tester
+v-asj@microsoft.com,Tester

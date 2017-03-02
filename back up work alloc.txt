@@ -1,0 +1,169 @@
+<?php
+include("db.php");
+$date=date("Y-m-d");
+?>
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Accessibility Daily status report" />
+<meta name="author" content="Vamsi Krishna Velichety" />
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="style.css" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$.noConflict();
+jQuery(document).ready(function($){
+	$('input[name="crtp_mobile_count"]').on("change keydown keyup keypress",function(){
+		var val1=$('input[name="crtp_mobile_count"]').val();
+		var txt="";
+		for(i=0;i<val1;i++){
+			var temp='crtp_m'+i;
+			txt=txt+'<input type="text" class="form-control" placeholder="Enter the name of the Test Pass" required id='+temp+'><br/>';
+		}
+		$("#crtp_mtp").html(txt);
+	});
+	$('input[name="crtp_desktop_count"]').on("change keydown keyup keypress",function(){
+		var val2=$('input[name="crtp_desktop_count"]').val();
+		var txt="";
+		for(i=0;i<val2;i++){
+			var temp='crtp_d'+i;
+			txt=txt+'<input type="text" class="form-control" placeholder="Enter the name of the Test Pass" required id='+temp+ '><br/>';
+		}
+		$("#crtp_dtp").html(txt);
+	});
+	$('input[name="prtp_mobile_count"]').on("change keydown keyup keypress",function(){
+		var val3=$('input[name="prtp_mobile_count"]').val();
+		var txt="";
+		for(i=0;i<val3;i++){
+			var temp='prtp_m'+i;
+			txt=txt+'<input type="text" class="form-control" placeholder="Enter the name of the Test Pass" required id='+temp+ '><br/>';
+		}
+		$("#prtp_mtp").html(txt);
+	});
+	$('input[name="prtp_desktop_count"]').on("change keydown keyup keypress",function(){
+		var val4=$('input[name="prtp_desktop_count"]').val();
+		var txt="";
+		for(i=0;i<val4;i++){
+			var temp='prtp_d'+i;
+			txt=txt+'<input type="text" class="form-control" placeholder="Enter the name of the Test Pass" required id='+temp+ '><br/>';
+		}
+		$("#prtp_dtp").html(txt);
+	});
+});
+</script>
+<script>
+function create_testpass(){	
+	var cr_mobile=create_tp.crtp_mobile_count.value;
+	var cr_desktop=create_tp.crtp_desktop_count.value;
+	var pr_mobile=create_tp.prtp_mobile_count.value;
+	var pr_desktop=create_tp.prtp_desktop_count.value;
+	var temp_txt="";
+	for(i=0;i<cr_mobile;i++){
+			var temp='crtp_m'+i;
+			var temp_val=document.getElementById(temp).value;
+			temp_txt=temp_txt+"&"+temp+"="+temp_val;
+		}
+	for(i=0;i<cr_desktop;i++){
+			var temp='crtp_d'+i;
+			var temp_val=document.getElementById(temp).value;
+			temp_txt=temp_txt+"&"+temp+"="+temp_val;
+		}
+	for(i=0;i<pr_mobile;i++){
+			var temp='prtp_m'+i;
+			var temp_val=document.getElementById(temp).value;
+			temp_txt=temp_txt+"&"+temp+"="+temp_val;
+		}
+	for(i=0;i<pr_desktop;i++){
+			var temp='prtp_d'+i;
+			var temp_val=document.getElementById(temp).value;
+			temp_txt=temp_txt+"&"+temp+"="+temp_val;
+		}
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			document.getElementById("body").innerHTML = xmlhttp.responseText;
+		}
+	};
+	xmlhttp.open("GET", "create_tp.php?cr_mobile="+cr_mobile+"&cr_desktop="+cr_desktop+"&pr_mobile="+pr_mobile+"&pr_desktop="+pr_desktop+temp_txt, true);
+	xmlhttp.send();
+	return false;
+}
+</script>
+<title>Daily Status Report</title>
+</head>
+<body id="body">
+<form name="create_tp" method="POST" onsubmit="return create_testpass();">
+	<div id="crtp" class="container" >
+		<h3>Current Running Test Pass on <?php echo $date;?></h3>
+		<br/>
+		<div class="panel panel-default col-md-5" style="margin-right:25px;" >
+		  <div class="panel-heading">
+			<h2 class="panel-title">Mobile Test Pass</h2>
+		  </div>
+		  <div class="panel-body">
+			<input type="number" min=0 class="form-control" name="crtp_mobile_count" placeholder="Total Number of Mobile Test Passes" required>
+			<br/>
+			<div id="crtp_mtp">
+			</div>
+		  </div>
+		</div>
+		<div class="panel panel-default col-md-6">
+		  <div class="panel-heading">
+			<h2 class="panel-title">Desktop Test Pass</h2>
+		  </div>
+		  <div class="panel-body">
+			<input type="number" min=0 class="form-control" name="crtp_desktop_count" placeholder="Total Number of Desktop Test Passes" required>
+			<br/>
+			<div id="crtp_dtp">
+			</div>
+		  </div>
+		</div>
+	</div>
+	<div id="prtp" class="container" >
+		<h3>Previously(Old) Running Test Pass on <?php echo $date;?></h3>
+		<br/>
+		<div class="panel panel-default col-md-5" style="margin-right:25px;" >
+		  <div class="panel-heading">
+			<h2 class="panel-title">Mobile Test Pass</h2>
+		  </div>
+		  <div class="panel-body">
+			<input type="number" min=0 class="form-control" name="prtp_mobile_count" placeholder="Total Number of Mobile Test Passes" value=0 required>
+			<br/>
+			<div id="prtp_mtp">
+			</div>
+		  </div>
+		</div>
+		<div class="panel panel-default col-md-6">
+		  <div class="panel-heading">
+			<h2 class="panel-title">Desktop Test Pass</h2>
+		  </div>
+		  <div class="panel-body">
+			<input type="number" min=0 class="form-control" name="prtp_desktop_count" placeholder="Total Number of Desktop Test Passes" value=0 required>
+			<br/>
+			<div id="prtp_dtp">
+			</div>
+		  </div>
+		</div>	
+	</div>
+	<br/>
+	<div class="container">
+		<input type="Submit" value="Create Test Passes " class="btn btn-primary">
+	</div>
+</form>
+</body>
+</html>
+
+
+
+LOAD DATA LOCAL INFILE "C:\\Users\\Abby\\Documents\\mobile_apps.csv" INTO TABLE apps_data
+LOAD DATA LOCAL INFILE "E:\\xampp\\htdocs\\SR\\users.txt" INTO TABLE approve_users FIELDS TERMINATED BY ",";
+		

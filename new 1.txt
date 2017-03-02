@@ -1,0 +1,10 @@
+<form name="search_summary" method="POST" >
+	<div class="container col-md-6">
+	<table class="table table-bordered table-primay">
+		<tr><td>Search By Date</td>
+		<td><input type="date" class="form-control" required name="search_summary" value="<?php echo $date;?>"></td>
+		<td><input type="Submit" value="Go" class="btn btn-primary"></td>
+		</tr>
+	</table>
+	</div>
+</form>
