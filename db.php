@@ -1,3 +1,3 @@
 <?php
-$con=mysqli_connect("localhost","root","","status_report");
+$con=mysqli_connect("CO1MYSQLDBPRD02","vamsi","Phoenix@89","status_report");
 ?>
